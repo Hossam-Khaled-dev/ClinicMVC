@@ -1,0 +1,44 @@
+﻿@using Clinic.DAL
+@model List<AppointmentViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-primary">Appointment List</h2>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <a asp-controller="Home" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Appointment
+            </a>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Doctor</th>
+                        <th>Appointment Date</th>
+                        <th>Appointment Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var appointment in Model)
+                    {
+                        <tr>
+                            <td>@appointment.PatientName</td>
+                            <td>@appointment.DoctorName</td>
+                            <td>@appointment.Date.ToShortDateString()</td>
+                            <td>@appointment.Time.ToString("hh:mm tt")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
